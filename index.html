@@ -836,6 +836,7 @@
     margin:0 auto 18px auto;
   }
 </style>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.4/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 <!-- === MAMBA LOADER === -->
@@ -1704,7 +1705,19 @@ proBackBtn.addEventListener('click', closeProScreen);
 proContinueBtn.addEventListener('click', () => showProStep(proStep2));
 proPayBtn.addEventListener('click', () => showProStep(proStep3));
 proDoneBtn.addEventListener('click', closeProScreen);
-
+<script>
+function launchConfetti(){
+  if(typeof confetti !== 'function') return;
+  const colors = ['#296DFF', '#B3452C', '#E8D9CE', '#6B9E6E'];
+  const end = Date.now() + 3000;
+  (function frame(){
+    confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors });
+    confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors });
+    if(Date.now() < end) requestAnimationFrame(frame);
+  })();
+}
+launchConfetti();
+</script>
 </script>
 
 </body>
